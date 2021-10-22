@@ -32,8 +32,8 @@ class MFQEv2Dataset(data.Dataset):
         self.opts_dict = opts_dict
 
         # !! please change to your path !!
-        self.gt_root = 'E:/stdf_train_muliQP/mfqev2_train_gt.lmdb'
-        self.lq_root = 'E:/stdf_train_muliQP/mfqev2_train_lq.lmdb'
+        self.gt_root = 'F:/TrainingDataset/mfqev2_train_gt.lmdb'
+        self.lq_root = 'F:/TrainingDataset/mfqev2_train_lq.lmdb'
 
         # extract keys from meta_info.txt
         self.meta_info_path = op.join(
