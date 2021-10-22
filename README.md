@@ -96,4 +96,48 @@ Please set your own path in test.py
 
 (4) raw_yuv_base_path: raw video (video before compression) path
 
-## 5. Performance
+## 5. Performnace
+
+## 6. License
+
+We adopt Apache License v2.0.
+
+If you find this repository helpful, please cite our work:
+
+```
+@article{PeQuENet,
+  title={PeQuENet: Perceptual Quality Enhancement of Compressed Video with Adaptation- and Attention-based Network},
+  author={Saiping Zhang and Luis Herranz and Marta Mrak and Marc Gorriz Blanch and Shuai Wan and Fuzheng Yang},
+  journal={arXiv preprint arXiv:***.***},
+  year={2021}
+}
+```
+
+
+We would like to thank the authors of [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0) for their open-source dataset and the author of [Pytorch implementation of STDF](https://github.com/RyanXingQL/STDF-PyTorch) for his open-source implementation and the way to generate training dataset in LMDB format.
+
+If you also find them useful, please cite their works
+
+```
+@article{2019xing,
+    doi = {10.1109/tpami.2019.2944806},
+    url = {https://doi.org/10.1109%2Ftpami.2019.2944806},
+    year = 2021,
+    month = {mar},
+    publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+    volume = {43},
+    number = {3},
+    pages = {949--963},
+    author = {Zhenyu Guan and Qunliang Xing and Mai Xu and Ren Yang and Tie Liu and Zulin Wang},
+    title = {{MFQE} 2.0: A New Approach for Multi-Frame Quality Enhancement on Compressed Video},
+    journal = {{IEEE} Transactions on Pattern Analysis and Machine Intelligence}
+}
+
+@misc{2020xing2,
+  author = {Qunliang Xing},
+  title = {PyTorch implementation of STDF},
+  howpublished = "\url{https://github.com/RyanXingQL/STDF-PyTorch}",
+  year = {2020}, 
+  note = "[Online; accessed 11-April-2021]"
+}
+```
