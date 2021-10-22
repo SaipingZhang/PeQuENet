@@ -62,6 +62,8 @@ Make sure you have enough space to store LMDB files. gt LMDB file needs about 14
 
 After successfully generate training dataset, set "gt_root" and "lq_root" in dataset/mfqev2.py. "gt_root" is "lmdb_gt_path". "lq_root" is "lmdb_lq_path"
 
+It should be noted that our training dataset includes compressed sequences at all of the four QPs to give the proposed PeQuENet the ability of QP-conditional adaptation. 
+
 ### 2.3. Training your own model
 
 ```
