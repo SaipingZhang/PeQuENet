@@ -60,7 +60,12 @@ There are four paths need to be set.
 
 Make sure you have enough space to store LMDB files. gt LMDB file needs about 141 GB. lq LMDB file needs about 762 GB. 
 
-After successfully generate training dataset, set "gt_root" and "lq_root" in dataset/mfqev2.py. "gt_root" is "lmdb_gt_path". "lq_root" is "lmdb_lq_path"
+After successfully generate training dataset, set 
+
+(1)"gt_root" and "lq_root" in dataset/mfqev2.py (class MFQEv2Dataset). "gt_root" is "lmdb_gt_path". "lq_root" is "lmdb_lq_path" (mentioned above).
+
+(2)"gt_root" and "lq_root" in dataset/mfqev2.py (class VideoTestMFQEv2Dataset). "gt_root" is the path where raw video for validation is stored. "lq_root" is the path where the corresponding compressed video for validation is stored. You can choose only one video to validate during the training (just for checking if training goes normally), or you can choose to remove all things about validation to save training time. 
+
 
 It should be noted that our training dataset includes compressed sequences at all of the four QPs to give the proposed PeQuENet the ability of QP-conditional adaptation. 
 
@@ -76,4 +81,5 @@ Every time you run train.py, a folder neamed exp will be generated. Delete it or
 
 ### 2.4. Pre-trained model
 
-Pre-trained models can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) code: 5a5p
+Pre-trained model can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) code: 5a5p
+
