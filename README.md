@@ -69,7 +69,7 @@ After successfully generate training dataset, set
 
 It should be noted that our training dataset includes compressed sequences at all of the four QPs to give the proposed PeQuENet the ability of QP-conditional adaptation. 
 
-### 2.3. Training your own model
+## 3. Training your own model
 
 ```
 python train.py
@@ -80,7 +80,7 @@ Parameters are set in 3frames_mfqev2_1G.yml.
 Every time you run train.py, a folder neamed "exp" will be generated. Delete it or rename it if you want to re-run train.py.
 
 
-### 2.4. Testing your own model
+## 4. Testing your own model
 
 ```
 python test.py
@@ -96,4 +96,4 @@ Please set your own path in test.py
 
 (4) raw_yuv_base_path: raw video (video before compression) path
 
-## 3. Performance
+## 5. Performance
