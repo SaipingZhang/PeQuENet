@@ -81,5 +81,5 @@ Every time you run train.py, a folder neamed exp will be generated. Delete it or
 
 ### 2.4. Pre-trained model
 
-Pre-trained model can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) code: 5a5p
+Pre-trained model can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) with extraction code: 5a5p
 
