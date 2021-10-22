@@ -69,3 +69,11 @@ It should be noted that our training dataset includes compressed sequences at al
 ```
 python train.py
 ```
+
+Parameters are set in 3frames_mfqev2_1G.yml.
+
+Every time you run train.py, a folder neamed exp will be generated. Delete it or rename it if you want to re-run train.py.
+
+### 2.4. Pre-trained model
+
+Pre-trained models can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) code: 5a5p
