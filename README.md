@@ -1,2 +1,2 @@
-# AGAN
-AGAN: An Attention-based GAN with QP Adaptation for Perceptual Quality Enhancement of Compressed Video
+# PeQuENet
+Perceptual Quality Enhancement of Compressed Video with Adaptation- and Attention-based Network
