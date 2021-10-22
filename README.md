@@ -102,7 +102,7 @@ Please set your own path in test.py
 
 ### 5.2. Quantitative performance evaluation
 
-Two perceptual quality metrics, i.e., [LPIPS](https://github.com/richzhang/PerceptualSimilarity) and [DISTS](https://github.com/dingkeyan93/DISTS), are used to evaluate the performance. To calcluate LPIPS and DISTS, you need to run "main.m" which calls "YUVtoRGB.m" to convert a video sequence to sequential RGB images firstly. Note that you need convert both raw videos (the orignal videos before compression) and enhanced videos (the outputs of the network). Then you can calculate LPIPS and DISTS. The average LPIPS or average DISTS of all images of a video is regarded as the LPIPS or DISTS of the video.
+Two perceptual quality metrics, i.e., [LPIPS](https://github.com/richzhang/PerceptualSimilarity) and [DISTS](https://github.com/dingkeyan93/DISTS), are used to evaluate the performance. To calcluate LPIPS and DISTS, you need to run "main.m" which calls "YUVtoRGB.m" to convert a video sequence to sequential RGB images firstly. Note that you need convert both raw videos (the orignal videos before compression) and enhanced videos (the outputs of the network). Corresponding raw image and enhanced image compose a image pair. Then you can calculate LPIPS and DISTS for each pair of images. The average LPIPS or average DISTS of all pairs of images of a video is regarded as the LPIPS or DISTS of the video.
 
 ## 6. License
 
