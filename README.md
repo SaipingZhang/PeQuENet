@@ -13,7 +13,7 @@ Please download raw videos [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MF
 
 Please compress all video sequences by H.265/HEVC reference software HM16.5 under Low Delay P (LDP) configuration with QPs set to be 22, 27, 32 and 37.
   
-Please establish two folders named "gt" (ground truth) and "lq" (low quality), respectively. Rename all videos for training, like "QP**_video**_gt" and "QP**_video**_lq". Note that "QP22_video**_gt", "QP27_video**_gt", "QP32_video**_gt" and "QP37_video**_gt" are actually the same. We just repeatly rename the same raw video** four times. While "QP22_video**_lq", "QP27_video**_lq", "QP32_video**_lq" and "QP37_video**_lq" are four low quality versions of the raw video**. Make sure the raw video and the compressed video (in low quality) are one-to-one corresponding. Put all raw videos in the "gt" folder, and put all compressed videos in the "lq" folder. 
+Please establish two folders named "gt" (ground truth) and "lq" (low quality), respectively. Rename all videos for training, like "QP**_video**_gt" and "QP**_video**_lq". Note that "QP22_video**_gt", "QP27_video**_gt", "QP32_video**_gt" and "QP37_video**_gt" are actually the same. We just repeatly rename the same raw video** four times. While "QP22_video**_lq", "QP27_video**_lq", "QP32_video**_lq" and "QP37_video**_lq" are four low quality versions of the raw video**. Make sure the raw video and the compressed video (in low quality) are one-to-one corresponding. Put all raw videos in the "gt" folder, and put all compressed videos in the "lq" folder. For example,
  
  ```tex
 gt/
