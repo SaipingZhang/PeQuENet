@@ -96,19 +96,7 @@ Please set your own path in test.py
 
 (4) raw_yuv_base_path: raw video (video before compression) path
 
-## 5. Performnace evaluation
-
-### 5.1. Qualitative performance evaluation
-
-<img src="https://github.com/SaipingZhang/PeQuENet/tree/main/performance/Fig. 5 (a).PNG" width="500" height="600">
-
-<img src="https://github.com/SaipingZhang/PeQuENet/tree/main/performance/Fig. 5 (b).PNG" width="500" height="600">
-
-<img src="https://github.com/SaipingZhang/PeQuENet/tree/main/performance/Fig. 5 (c).PNG" width="500" height="600">
-
-<img src="https://github.com/SaipingZhang/PeQuENet/tree/main/performance/Fig. 5 (d).PNG" width="500" height="600">
-
-### 5.2. Quantitative performance evaluation
+## 5. Quantitative performance evaluation
 
 Two perceptual quality metrics, i.e., [LPIPS](https://github.com/richzhang/PerceptualSimilarity) and [DISTS](https://github.com/dingkeyan93/DISTS), are used to evaluate the performance. To calcluate LPIPS and DISTS, you need to run "main.m" which calls "YUVtoRGB.m" to convert a video sequence to sequential RGB images firstly. Note that you need convert both raw videos (the orignal videos before compression) and enhanced videos (the outputs of the network). Corresponding raw image and enhanced image compose a image pair. Then you can calculate LPIPS (lpips.LPIPS(net='alex',version=0.1)) and DISTS for each pair of images. The average LPIPS or average DISTS of all pairs of images of a video is regarded as the LPIPS or DISTS of the video.
 
