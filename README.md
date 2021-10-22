@@ -77,7 +77,7 @@ python train.py
 
 Parameters are set in 3frames_mfqev2_1G.yml.
 
-Every time you run train.py, a folder neamed exp will be generated. Delete it or rename it if you want to re-run train.py.
+Every time you run train.py, a folder neamed "exp" will be generated. Delete it or rename it if you want to re-run train.py.
 
 ### 2.4. Pre-trained model
 
