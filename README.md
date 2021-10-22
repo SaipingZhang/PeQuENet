@@ -7,7 +7,7 @@ PeQuENet: Perceptual Quality Enhancement of Compressed Video with Adaptation- an
 
 ## 2. Dataset
 
-### 2.1 We use the open-source dataset (108 video sequences for training and 18 video sequences for testing) used in [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0). 
+### 2.1. We use the open-source dataset (108 video sequences for training and 18 video sequences for testing) used in [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0). 
 
 Please download raw videos [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset).
 
@@ -37,4 +37,4 @@ lq/
 
 Now we have 432 videos in the gt folder and 432 videos in the lq folder. Videos are one-to-one corresponding.
 
-### 2.2 We refer to the way to and "generate LMDB" described in [Pytorch implementation of STDF](https://github.com/RyanXingQL/STDF-PyTorch) to generate our own training dataset.
+### 2.2. We refer to the way to and "generate LMDB" described in [Pytorch implementation of STDF](https://github.com/RyanXingQL/STDF-PyTorch) to generate our own training dataset.
