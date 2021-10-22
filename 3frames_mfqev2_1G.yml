@@ -1,0 +1,75 @@
+dataset:
+  train:  # LMDB
+    type: MFQEv2Dataset
+    
+    # for lmdb
+    root: /raid/xql/datasets/MFQEv2_dataset
+    
+    # for dataset
+    meta_info_fp: meta_info.txt
+    gt_size: 128  # ground truth patch size: gt_size * gt_size
+    use_flip: True
+    use_rot: True  # rotation per 90 degrees
+    random_reverse: False
+
+    # for datasampler
+    enlarge_ratio: 300  # enlarge dataset by randomly cropping.
+    
+    # for dataloader
+    num_worker_per_gpu: 12
+    batch_size_per_gpu: 32
+  
+  val:  # Disk IO
+    type: VideoTestMFQEv2Dataset
+    root: /media/x/Database/MFQEv2/
+    meta_info_fp: meta_info.txt
+    enlarge_ratio: 1
+    use_flip: False
+    use_rot: False
+    random_reverse: False
+
+  test:
+    type: VideoTestMFQEv2Dataset
+    gt_path: test_18/raw/
+    lq_path: test_18/HM16.5_LDP/QP37/
+
+network:
+  radius: 1   # total num of input frame = 2 * radius + 1, radius must be 1 for PeQuENet (since the input are 3 frames).
+
+train:
+  exp_name: MFQEv2_R3_enlarge300x  # default: timestr. None: ~
+  random_seed: 7
+  pre-val: False  # evaluate criterion before training
+  num_iter: !!float 300000
+  interval_print: !!float 100
+  interval_val: !!float 5000  # also save model
+  pbar_len: 100
+
+  optim:
+    type: Adam
+    lr: !!float 1e-4  # init lr of scheduler
+    betas: [0.9, 0.999]
+    eps: !!float 1e-08
+
+  scheduler:
+    is_on: False
+    type: CosineAnnealingRestartLR
+    periods: [!!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4, !!float 5e+4]  # epoch interval
+    restart_weights: [1, 0.5, 0.5, 0.5, 0.5, 0.5]
+    eta_min: !!float 1e-7
+
+  loss:
+    type: CharbonnierLoss
+    eps: !!float 1e-6
+
+  criterion:
+    type: PSNR
+    unit: dB
+
+test:
+  restore_iter: !!float 290000
+  pbar_len: 100
+
+  criterion:
+    type: PSNR
+    unit: dB
