@@ -104,18 +104,6 @@ Two perceptual quality metrics, i.e., [LPIPS](https://github.com/richzhang/Perce
 
 We adopt Apache License v2.0.
 
-If you find this repository helpful, please cite our work:
-
-```
-@article{PeQuENet,
-  title={PeQuENet: Perceptual Quality Enhancement of Compressed Video with Adaptation- and Attention-based Network},
-  author={Saiping Zhang and Luis Herranz and Marta Mrak and Marc Gorriz Blanch and Shuai Wan and Fuzheng Yang},
-  journal={arXiv preprint arXiv:***.***},
-  year={2021}
-}
-```
-
-
 We would like to thank the authors of [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0) for their open-source dataset and the author of [Pytorch implementation of STDF](https://github.com/RyanXingQL/STDF-PyTorch) for his open-source implementation and the way to generate training dataset in LMDB format.
 
 If you also find them useful, please cite their works
