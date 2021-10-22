@@ -7,9 +7,9 @@ PeQuENet: Perceptual Quality Enhancement of Compressed Video with Adaptation- an
 
 ## 2. Dataset
 
-### 2.1. We use the open-source dataset (108 video sequences for training and 18 video sequences for testing) used in [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0). 
+### 2.1. We use the open-source dataset used in [MFQE 2.0](https://github.com/RyanXingQL/MFQEv2.0). 
 
-Please download raw videos [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset).
+Please download raw videos [here](https://github.com/RyanXingQL/MFQEv2.0/wiki/MFQEv2-Dataset). (108 video sequences for training and 18 video sequences for testing) 
 
 Please compress all video sequences by H.265/HEVC reference software HM16.5 under Low Delay P (LDP) configuration with QPs set to be 22, 27, 32 and 37.
   
