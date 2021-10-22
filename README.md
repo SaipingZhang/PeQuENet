@@ -96,7 +96,11 @@ Please set your own path in test.py
 
 (4) raw_yuv_base_path: raw video (video before compression) path
 
-## 5. Performnace
+## 5. Performnace evaluation
+
+### 5.1. Qualitative performance evaluation
+
+### 5.2. Quantitative performance evaluation
 
 ## 6. License
 
