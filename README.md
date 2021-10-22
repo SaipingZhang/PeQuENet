@@ -58,4 +58,12 @@ There are four paths need to be set.
 
 (4) "lmdb_lq_path": the path where you want to store lq LMDB file.
 
-Make sure you have enough space to store LMDB files. 
+Make sure you have enough space to store LMDB files. gt LMDB file needs about 141 GB. lq LMDB file needs about 762 GB. 
+
+After successfully generate training dataset, set "gt_root" and "lq_root" in dataset/mfqev2.py. "gt_root" is "lmdb_gt_path". "lq_root" is "lmdb_lq_path"
+
+### 2.3. Training your own model
+
+```
+python train.py
+```
