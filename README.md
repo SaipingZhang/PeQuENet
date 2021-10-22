@@ -96,3 +96,4 @@ Please set your own path in test.py
 
 (4) raw_yuv_base_path: raw video (video before compression) path
 
+## 3. Performance
