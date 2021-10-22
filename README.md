@@ -44,5 +44,18 @@ Now we have 432 videos in the gt folder and 432 videos in the lq folder. Videos 
 We refer to the way to "generate LMDB" described in [Pytorch implementation of STDF](https://github.com/RyanXingQL/STDF-PyTorch) to generate our own training dataset. Use LMDB files can speed up IO during training.
 
 ```
-python dataset/create_lmdb_mfqev2.py --opt_path 3frames_mfqev2_1G.yml
+python dataset/create_lmdb_mfqev2.py
 ```
+Note that you need to set your own path in "create_lmdb_mfqev2.py". 
+
+There are four paths need to be set.
+
+(1) "gt_dir": the path of folder "gt" mentioned above.
+
+(2) "lq_dir": the path of folder "lq" mentioned above.
+
+(3) "lmdb_gt_path": the path where you want to store gt LMDB file.
+
+(4) "lmdb_lq_path": the path where you want to store lq LMDB file.
+
+Make sure you have enough space to store LMDB files. 
