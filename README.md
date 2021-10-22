@@ -79,7 +79,20 @@ Parameters are set in 3frames_mfqev2_1G.yml.
 
 Every time you run train.py, a folder neamed "exp" will be generated. Delete it or rename it if you want to re-run train.py.
 
-### 2.4. Pre-trained model
 
-Pre-trained model can be found here: [Pre-trained model](https://pan.baidu.com/s/1VC0BY8_7QoY21AkGv1jyVA) with extraction code: 5a5p
+### 2.4. Testing your own model
+
+```
+python test.py
+```
+
+Please set your own path in test.py
+
+(1) ckp_path: pre-trained model path
+
+(2) rec_yuv_save_path: enhanced video path (output path)
+
+(3) cmp_yuv_path: compressed video path (input path)
+
+(4) raw_yuv_base_path: raw video (video before compression) path
 
