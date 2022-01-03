@@ -258,7 +258,7 @@ def main():
     D = discriminator(32)
     D.weight_init(mean=0.0, std=0.02)
     D.cuda()
-    D_optimizer = torch.optim.Adam(D.parameters(), lr, betas=(0.5, 0.999))
+    D_optimizer = torch.optim.Adam(D.parameters(), lr, betas=(0.9, 0.999))
 
 
     assert opts_dict['train']['loss'].pop('type') == 'CharbonnierLoss', \
