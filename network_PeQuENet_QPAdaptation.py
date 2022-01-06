@@ -5,7 +5,7 @@ from torchvision.models import vgg19
 import functools
 
 
-class QPNET(nn.Module):
+class QENET(nn.Module):
     def __init__(self, in_nc=128, nf=64, out_nc=1, base_ks=3):
         """
         Args:
@@ -15,7 +15,7 @@ class QPNET(nn.Module):
             out_nc: num of output channel. 1 for Y.
             base_ks: kernel size 3x3
         """
-        super(QPNET, self).__init__()
+        super(QENET, self).__init__()
         self.one_hot = F.one_hot
         self.fc = nn.Sequential(
             nn.Linear(4, 64),
@@ -174,7 +174,7 @@ class PeQuENet(nn.Module):
         self.dec2_plus = DecoderBlock(256, 128)
         self.dec1_plus = DecoderBlock(128, 64)
 
-        self.QPNet = QPNET(128,64,1,3)
+        self.QENet = QENET(128,64,1,3)
 
 
     def forward(self, radius, inputs, qp):
@@ -215,6 +215,6 @@ class PeQuENet(nn.Module):
 
         fused_feature = torch.cat((dec1_minus,dec1_plus),1)
 
-        pred = self.QPNet(fused_feature,qp)
+        pred = self.QENet(fused_feature,qp)
 
         return pred
