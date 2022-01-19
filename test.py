@@ -89,7 +89,7 @@ def main():
             # enhance
             with torch.no_grad():
                 # torch.tensor([0]): QP 22 torch.tensor([1]): QP 27
-                # torch.tensor([2]): QP 32 torch.tensor([3]): QP 33
+                # torch.tensor([2]): QP 32 torch.tensor([3]): QP 37
                 qp_num = torch.tensor([3]).unsqueeze(0).to(0)
                 enhanced_frm = model(opts_dict['radius'], input_data, qp_num)
 
