@@ -46,6 +46,7 @@ def main():
 
     for video in video_list:
         lq_yuv_path = cmp_yuv_path + '/' + video
+        raw_yuv_path = raw_yuv_base_path + '/' + video
 
         h = int(video.split('_', 2)[1].split('x')[1])
         w = int(video.split('_', 2)[1].split('x')[0])
