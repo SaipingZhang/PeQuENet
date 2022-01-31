@@ -35,12 +35,12 @@ def main():
 
     video_list = ['RaceHorses_416x240_300.yuv','BlowingBubbles_416x240_500.yuv',
                   'BasketballPass_416x240_500.yuv','BQMall_832x480_600.yuv',
-                  'BQSquare_416x240_600.yuv','FourPeople_1280x720_600.yuv',
-                  'Johnny_1280x720_600.yuv','KristenAndSara_1280x720_600.yuv',
                   'PartyScene_832x480_500.yuv','BasketballDrill_832x480_500.yuv',
+                  'BQSquare_416x240_600.yuv', 'RaceHorses_832x480_300.yuv',
+                  'FourPeople_1280x720_600.yuv', 'KristenAndSara_1280x720_600.yuv',
+                  'Johnny_1280x720_600.yuv', 'BasketballDrive_1920x1080_500.yuv',
                   'Kimono_1920x1080_240.yuv','BQTerrace_1920x1080_600.yuv',
-                  'Cactus_1920x1080_500.yuv','ParkScene_1920x1080_240.yuv',
-                  'RaceHorses_832x480_300.yuv','BasketballDrive_1920x1080_500.yuv',
+                  'Cactus_1920x1080_500.yuv','ParkScene_1920x1080_240.yuv',                  
                   'Traffic_2560x1600_150.yuv','PeopleOnStreet_2560x1600_150.yuv']
 
     for video in video_list:
