@@ -18,25 +18,21 @@ Principle:
 
 Contact: ryanxingql@gmail.com
 """
+from .conversion import (img2float32, ndarray2img, rgb2ycbcr, ycbcr2rgb,
+                         rgb2gray, gray2rgb, bgr2rgb, rgb2bgr, paired_random_crop, augment,
+                         totensor)
+from .deep_learning import (set_random_seed, init_dist, get_dist_info,
+                            DistSampler, create_dataloader, CharbonnierLoss, PSNR, CosineAnnealingRestartLR,
+                            get_patches, combine_patches)
 from .file_io import (import_yuv, write_ycbcr, FileClient, dict2str, CPUPrefetcher)
-from .conversion import (img2float32, ndarray2img, rgb2ycbcr, ycbcr2rgb, 
-rgb2gray, gray2rgb, bgr2rgb, rgb2bgr, paired_random_crop, augment, 
-totensor)
-from .metrics import (calculate_psnr, calculate_ssim, calculate_mse)
-from .deep_learning import (set_random_seed, init_dist, get_dist_info, 
-DistSampler, create_dataloader, CharbonnierLoss, PSNR, CosineAnnealingRestartLR)
-from .system import (mkdir, get_timestr, Timer, Counter)
 from .lmdb import make_lmdb_from_imgs, make_y_lmdb_from_yuv
-
+from .metrics import (calculate_psnr, calculate_ssim, calculate_mse)
+from .system import (mkdir, get_timestr, Timer, Counter)
 
 __all__ = [
-    'import_yuv', 'write_ycbcr', 'FileClient', 'dict2str', 'CPUPrefetcher', 
-    'img2float32', 'ndarray2img', 'rgb2ycbcr', 'ycbcr2rgb', 'rgb2gray', 
-    'gray2rgb', 'bgr2rgb', 'rgb2bgr', 'paired_random_crop', 'augment', 
-    'totensor', 
-    'calculate_psnr', 'calculate_ssim', 'calculate_mse', 
-    'set_random_seed', 'init_dist', 'get_dist_info', 'DistSampler', 
-    'create_dataloader', 'CharbonnierLoss', 'PSNR', 'CosineAnnealingRestartLR', 
-    'mkdir', 'get_timestr', 'Timer', 'Counter', 
-    'make_lmdb_from_imgs', 'make_y_lmdb_from_yuv', 
-    ]
+    'import_yuv', 'write_ycbcr', 'FileClient', 'dict2str', 'CPUPrefetcher', 'img2float32', 'ndarray2img', 'rgb2ycbcr',
+    'ycbcr2rgb', 'rgb2gray', 'gray2rgb', 'bgr2rgb', 'rgb2bgr', 'paired_random_crop', 'augment', 'totensor',
+    'calculate_psnr', 'calculate_ssim', 'calculate_mse', 'set_random_seed', 'init_dist', 'get_dist_info', 'DistSampler',
+    'create_dataloader', 'CharbonnierLoss', 'PSNR', 'CosineAnnealingRestartLR', 'mkdir', 'get_timestr', 'Timer',
+    'Counter', 'make_lmdb_from_imgs', 'make_y_lmdb_from_yuv', 'get_patches', 'combine_patches'
+]
