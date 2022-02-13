@@ -16,7 +16,7 @@ import dataset
 from network_PeQuENet_QPAdaptation import PeQuENet
 import torch.nn as nn
 import torch.nn.functional as F
-from vgg import vgg19
+from vgg import Vgg19
 from vgg import AntiAliasInterpolation2d
 
 def normal_init(m, mean, std):
