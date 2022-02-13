@@ -5,61 +5,47 @@ import numpy as np
 # ==========
 
 
-def import_yuv(seq_path, h, w, tot_frm, yuv_type='420p', start_frm=0, only_y=True):
-    """Load Y, U, and V channels separately from a 8bit yuv420p video.
-    
-    Args:
-        seq_path (str): .yuv (imgs) path.
-        h (int): Height.
-        w (int): Width.
-        tot_frm (int): Total frames to be imported.
-        yuv_type: 420p or 444p
-        start_frm (int): The first frame to be imported. Default 0.
-        only_y (bool): Only import Y channels.
+def import_yuv(fname, width, height, num_frames=0, frame_skip=0, bitdepth=8):
+    yuvfile = open(fname, mode='rb')
 
-    Return:
-        y_seq, u_seq, v_seq (3 channels in 3 ndarrays): Y channels, U channels, 
-        V channels.
+    n_elements_luma = width * height
+    n_elements_chroma = int(n_elements_luma / 4)
+    n_elements_frame = (n_elements_luma + 2 * n_elements_chroma)
+    nBytes = 1 if bitdepth == 8 else 2
+    dtRead = np.dtype('uint8') if bitdepth == 8 else np.dtype('<u2')
+    dt = np.dtype('uint8') if bitdepth == 8 else np.dtype('<u2')
+    skip_offset = 0
+    if frame_skip > 0:
+        print('Skipping frames at the beginning (if necessary)')
+        skip_offset = int(n_elements_frame * nBytes)
 
-    Note:
-        YUV传统上是模拟信号格式, 而YCbCr才是数字信号格式.YUV格式通常实指YCbCr文件.
-        参见: https://en.wikipedia.org/wiki/YUV
-    """
-    # setup params
-    if yuv_type == '420p':
-        hh, ww = h // 2, w // 2
-    elif yuv_type == '444p':
-        hh, ww = h, w
-    else:
-        raise Exception('yuv_type not supported.')
+        # Try to read the whole thing at once:
+    num_items = -1
+    if num_frames > 0:
+        num_items = int(n_elements_frame * num_frames)
 
-    y_size, u_size, v_size = h * w, hh * ww, hh * ww
-    blk_size = y_size + u_size + v_size
-    
-    # init
-    y_seq = np.zeros((tot_frm, h, w), dtype=np.uint8)
-    if not only_y:
-        u_seq = np.zeros((tot_frm, hh, ww), dtype=np.uint8)
-        v_seq = np.zeros((tot_frm, hh, ww), dtype=np.uint8)
+    data = np.fromfile(yuvfile, dtype=dtRead, count=num_items, offset=skip_offset)
+    n_frames = int(data.shape[0] / n_elements_frame)
 
-    # read data
-    with open(seq_path, 'rb') as fp:
-        for i in range(tot_frm):
-            fp.seek(int(blk_size * (start_frm + i)), 0)  # skip frames
-            y_frm = np.fromfile(fp, dtype=np.uint8, count=y_size).reshape(h, w)
-            if only_y:
-                y_seq[i, ...] = y_frm
-            else:
-                u_frm = np.fromfile(fp, dtype=np.uint8, \
-                    count=u_size).reshape(hh, ww)
-                v_frm = np.fromfile(fp, dtype=np.uint8, \
-                    count=v_size).reshape(hh, ww)
-                y_seq[i, ...], u_seq[i, ...], v_seq[i, ...] = y_frm, u_frm, v_frm
+    luma = np.zeros(shape=(n_frames, height, width,), dtype=dt)
+    chroma_u = np.zeros(shape=(n_frames, int(height / 2), int(width / 2)), dtype=dt)
+    chroma_v = np.zeros(shape=(n_frames, int(height / 2), int(width / 2)), dtype=dt)
 
-    if only_y:
-        return y_seq
-    else:
-        return y_seq, u_seq, v_seq
+    offset = 0
+    # arrange data in frames
+    for f in range(0, n_frames):
+        luma_array = data[offset:offset + n_elements_luma]
+        luma[f, :, :] = np.reshape(np.transpose(luma_array), (height, width))
+        offset = offset + n_elements_luma
+
+        chroma_array = data[offset:offset + n_elements_chroma]
+        chroma_u[f, :, :] = np.reshape(np.transpose(chroma_array), (int(height / 2), int(width / 2)))
+        offset = offset + n_elements_chroma
+
+        chroma_array = data[offset:offset + n_elements_chroma]
+        chroma_v[f, :, :] = np.reshape(np.transpose(chroma_array), (int(height / 2), int(width / 2)))
+        offset = offset + n_elements_chroma
+    return luma, chroma_u, chroma_v
 
 
 def write_ycbcr(y, cb, cr, vid_path):
