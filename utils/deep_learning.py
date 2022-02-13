@@ -1,14 +1,35 @@
-import os
-import math
 import random
+from functools import partial
+
 import numpy as np
 import torch
-import torch.nn as nn
 import torch.distributed as dist
 import torch.multiprocessing as tmp
-from functools import partial
-from torch.utils.data.sampler import Sampler
+import torch.nn as nn
 from torch.utils.data import DataLoader as DataLoader
+from torch.utils.data.sampler import Sampler
+
+
+def get_patches(data, ks):
+    h, w = data.shape[-2:]
+    patches = []
+    for i in range(int(np.ceil(h / ks[0]))):
+        i_max = np.minimum((i + 1) * ks[0], h)
+        cols = []
+        for j in range(int(np.ceil(w / ks[1]))):
+            j_max = np.minimum((j + 1) * ks[1], w)
+            patch = data[:, :, i * ks[0]:i_max, j * ks[1]:j_max]
+            if 0 not in patch.shape:
+                cols.append(patch)
+        patches.append(cols)
+    return patches
+
+
+def combine_patches(patches):
+    rows = []
+    for i in range(len(patches)):
+        rows.append(torch.cat(patches[i], -1))
+    return torch.cat(rows, -2)
 
 
 def set_random_seed(seed):
@@ -38,7 +59,7 @@ def get_dist_info():
     else:
         rank = 0
         world_size = 1
-    
+
     return rank, world_size
 
 
@@ -64,7 +85,7 @@ class DistSampler(Sampler):
 
     def __init__(
             self, dataset, num_replicas=None, rank=None, ratio=1
-            ):
+    ):
         self.dataset = dataset
         self.num_replicas = num_replicas
         self.rank = rank
@@ -72,7 +93,7 @@ class DistSampler(Sampler):
         # enlarged by ratio, and then divided by num_replicas
         self.num_samples = math.ceil(
             len(self.dataset) * ratio / self.num_replicas
-            )
+        )
         self.total_size = self.num_samples * self.num_replicas
 
     def __iter__(self):
@@ -105,7 +126,7 @@ class DistSampler(Sampler):
 
 def create_dataloader(
         dataset, opts_dict, sampler=None, phase='train', seed=None
-        ):
+):
     """Create dataloader."""
     if phase == 'train':
         # >I don't know why BasicSR have to detect `is_dist`
@@ -117,16 +138,16 @@ def create_dataloader(
             sampler=sampler,
             drop_last=True,
             pin_memory=True
-            )
+        )
         if sampler is None:
             dataloader_args['shuffle'] = True
         dataloader_args['worker_init_fn'] = partial(
-            _worker_init_fn, 
-            num_workers=opts_dict['dataset']['train']['num_worker_per_gpu'], 
+            _worker_init_fn,
+            num_workers=opts_dict['dataset']['train']['num_worker_per_gpu'],
             rank=opts_dict['train']['rank'],
             seed=seed
-            )
-        
+        )
+
     elif phase == 'val':
         dataloader_args = dict(
             dataset=dataset,
@@ -134,8 +155,8 @@ def create_dataloader(
             shuffle=False,
             num_workers=0,
             pin_memory=False
-            )
-    
+        )
+
     return DataLoader(**dataloader_args)
 
 
@@ -222,7 +243,7 @@ class MultiStepRestartLR(_LRScheduler):
         if self.last_epoch not in self.milestones:
             return [group['lr'] for group in self.optimizer.param_groups]
         return [
-            group['lr'] * self.gamma**self.milestones[self.last_epoch]
+            group['lr'] * self.gamma ** self.milestones[self.last_epoch]
             for group in self.optimizer.param_groups
         ]
 
@@ -294,6 +315,6 @@ class CosineAnnealingRestartLR(_LRScheduler):
         return [
             self.eta_min + current_weight * 0.5 * (base_lr - self.eta_min) *
             (1 + math.cos(math.pi * (
-                (self.last_epoch - nearest_restart) / current_period)))
+                    (self.last_epoch - nearest_restart) / current_period)))
             for base_lr in self.base_lrs
         ]
