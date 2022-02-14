@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from vgg import vgg19
+from torchvision.models import vgg19
 import functools
 
 
